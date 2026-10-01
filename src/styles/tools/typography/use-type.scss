@@ -1,0 +1,17 @@
+@use "sass:map";
+@use "./config";
+
+/* useType
+
+  Applies a typeset's font properties as-is (no responsive logic).
+  Typesets are flat maps in config.scss whose values reference the
+  typography tokens. */
+@mixin useType($type) {
+  @if not map.has-key(config.$font-typeset, $type) {
+    @error "Unknown typeset `#{$type}`. Defined: #{map.keys(config.$font-typeset)}";
+  }
+
+  @each $prop, $value in map.get(config.$font-typeset, $type) {
+    #{$prop}: $value;
+  }
+}

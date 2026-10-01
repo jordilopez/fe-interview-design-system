@@ -1,0 +1,22 @@
+/* ==========================================================================
+   Typography configuration
+
+   Typeset values reference the CSS custom properties from
+   `src/styles/tokens/typography.scss`, so token values are defined once.
+   ========================================================================== */
+
+/* Typesets — flat maps of CSS font properties, no responsive logic. */
+$font-typeset: (
+  body-m: (
+    font-family: var(--ff-inter),
+    font-size: var(--fs-sm),
+    line-height: var(--lh-base),
+    font-weight: var(--fw-bold),
+  ),
+  body-s: (
+    font-family: var(--ff-inter),
+    font-size: var(--fs-xs),
+    line-height: var(--lh-base),
+    font-weight: var(--fw-bold),
+  ),
+) !default;

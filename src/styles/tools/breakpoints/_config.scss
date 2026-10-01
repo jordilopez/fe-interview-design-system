@@ -1,0 +1,14 @@
+/* ==========================================================================
+   Breakpoint configuration — the single place to set up $breakpoints.
+
+   Mobile-first: values are min-widths in ascending order. The first
+   breakpoint should be 0 so `bpFrom($first)` emits styles unconditionally.
+   ========================================================================== */
+
+$breakpoints: (
+  xs: 0,
+  sm: 480px,
+  md: 768px,
+  lg: 1020px,
+  xl: 1280px,
+) !default;

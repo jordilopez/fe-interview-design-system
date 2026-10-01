@@ -1,0 +1,21 @@
+@use "sass:map";
+@use "./config";
+
+/* Applies styles from the given breakpoint and up (mobile-first min-width).
+   The 0-value breakpoint emits styles without a media query. */
+@mixin bpFrom($size) {
+  @if not map.has-key(config.$breakpoints, $size) {
+    @error "Unknown breakpoint: #{$size}. Defined: #{map.keys(config.$breakpoints)}";
+  }
+
+  $bp-size: map.get(config.$breakpoints, $size);
+
+  @if $bp-size == 0 {
+    @content;
+  }
+  @else {
+    @media (min-width: $bp-size) {
+      @content;
+    }
+  }
+}
