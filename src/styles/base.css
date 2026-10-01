@@ -1,0 +1,8 @@
+@layer fe-interview-design-system.base {
+  body {
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-family: var(--ff-inter);
+  }
+}

@@ -1,0 +1,11 @@
+/* Style entry point — CSS output, imported once per app.
+   Each file wraps its rules in its own cascade layer. */
+@layer fe-interview-design-system.reset,
+  fe-interview-design-system.tokens,
+  fe-interview-design-system.base,
+  fe-interview-design-system.utils;
+
+@import "./reset.css";
+@import "./tokens/index.css";
+@import "./base.css";
+@import "./utils.css";
