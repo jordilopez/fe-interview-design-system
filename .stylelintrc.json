@@ -1,0 +1,8 @@
+{
+  "$schema": "https://stylelint.io/schemas/stylelint.schema.json",
+  "extends": ["stylelint-config-recommended-scss", "@stylistic/stylelint-config"],
+  "rules": {
+    "@stylistic/indentation": 2
+  },
+  "ignoreFiles": ["node_modules/**", "dist/**", "storybook-static/**"]
+}

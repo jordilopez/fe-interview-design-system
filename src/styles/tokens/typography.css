@@ -1,0 +1,16 @@
+@layer fe-interview-design-system.tokens {
+  :root {
+    /* Font families */
+    --ff-inter: "Inter", sans-serif;
+
+    /* Font sizes */
+    --fs-xs: 12px;
+    --fs-sm: 14px;
+
+    /* Line heights */
+    --lh-base: 1.5;
+
+    /* Font weights */
+    --fw-bold: 700;
+  }
+}
