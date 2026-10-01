@@ -1,0 +1,12 @@
+# Decisions
+
+One line per architecture decision, newest last. Format: `ADR-NNN (YYYY-MM-DD): decision — rationale`.
+
+- ADR-001 (2026-10-01): Tokens ship as plain CSS in cascade layers — no build step for consumers; `@layer fe-interview-design-system.{reset,tokens,base,utils}` keeps precedence explicit and lets unlayered consumer CSS always win.
+- ADR-002 (2026-10-01): Stylelint owns SCSS, Biome owns CSS + JS/TS — Biome can't parse SCSS; Stylelint no longer covers `.css`, avoiding double lint/format conflicts (Biome lineWidth 100 vs Stylelint 120).
+- ADR-003 (2026-10-01): Breakpoints via Sass `bpFrom` mixin + `$breakpoints` map, not `@custom-media` — Vite 8 dropped PostCSS plugin support, so `postcss-custom-media` can't run; Sass compiles media queries natively.
+- ADR-004 (2026-10-01): Sass tooling (`bpFrom`, `useType`) ported from hanzo ecommerce-ui-library with modern `@use`/`@forward` modules — `@import` is deprecated for removal in Dart Sass 3.
+- ADR-005 (2026-10-01): Typesets limited to `body-m`/`body-s`, non-responsive and bold — the two typesets actually needed; per-breakpoint/elastic machinery from hanzo deliberately not ported.
+- ADR-006 (2026-10-01): Inter font via Google Fonts CDN `<link>` in `.storybook/preview-head.html`, weight 700 only — matches the bold-only typography intent; self-hosting deferred.
+- ADR-007 (2026-10-01): Token values referenced as `var(--*)` inside Sass config — typesets stay in sync with tokens without a compile-time dependency between `tools/` and tokens.
+- ADR-008 (2026-10-01): Storybook preview loads the full design-system stylesheet (`src/styles/index.css`). Assumption: consuming apps import the same stylesheet and reconcile it with their own reset/base via cascade layers.
