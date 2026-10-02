@@ -1,0 +1,29 @@
+@use "../../styles/tools" as *;
+
+.c-badge {
+  @include useType(body-s);
+  --badge-border-radius: var(--radius-lg);
+  --badge-padding: var(--sp-4xs) var(--sp-3xs);
+  --badge-background-color: var(--tone-neutral);
+
+  display: inline-block;
+
+  background-color: var(--badge-background-color);
+  color: var(--fg-default);
+
+  padding: var(--badge-padding);
+  border-radius: var(--badge-border-radius);
+
+  @include bpFrom(md) {
+    --badge-padding: var(--sp-3xs) var(--sp-2xs);
+    --badge-border-radius: var(--radius-xl);
+  }
+
+  &[data-tone="positive"] {
+    --badge-background-color: var(--tone-positive);
+  }
+
+  &[data-tone="negative"] {
+    --badge-background-color: var(--tone-negative);
+  }
+}

@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 # husky
 .husky/_
+
+# Storybook
+storybook-static

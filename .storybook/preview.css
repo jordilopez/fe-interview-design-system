@@ -5,7 +5,7 @@
  * --background/--content are preview-only conveniences, NOT design tokens.
  */
 :root {
-  --background: #eee;
+  --background: #fff;
   --content: #222;
 }
 
