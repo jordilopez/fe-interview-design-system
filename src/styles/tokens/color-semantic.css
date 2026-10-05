@@ -1,22 +1,27 @@
 @layer fe-interview-design-system.tokens {
   :root {
     /* Text */
-    --fg-default: var(--color-ink);
-    --fg-muted: var(--color-border-strong);
-    --fg-inverse: var(--color-surface);
+    --color-text-primary: var(--blue-9);
+    --color-text-secondary: var(--blue-7);
+    --color-text-muted: var(--gray-5);
 
     /* Surfaces */
-    --bg-default: var(--color-surface);
-    --bg-sunken: var(--color-neutral-soft);
+    --color-background: var(--gray-1);
+    --color-surface: var(--gray-2);
+    --color-surface-active: var(--gray-3);
+    --color-surface-active-light: var(--blue-5);
 
     /* Borders & focus */
-    --border-default: var(--color-border);
-    --border-strong: var(--color-border-strong);
-    --outline-focus: 2px solid var(--color-ink);
+    --color-border: var(--gray-4);
+    --color-border-strong: var(--gray-5);
+    --color-focus: var(--blue-9);
 
-    /* Tones (badge variants, statuses — cross-component) */
-    --tone-neutral: var(--color-neutral-soft);
-    --tone-positive: var(--color-positive-soft);
-    --tone-negative: var(--color-negative-soft);
+    /* Status */
+    --color-success: var(--green-2);
+    --color-error: var(--red-2);
+
+    /* Text placed on top of status fills. Status fills stay pale in every
+       theme, so this stays dark even when --color-text-primary flips. */
+    --color-text-on-status: var(--blue-9);
   }
 }

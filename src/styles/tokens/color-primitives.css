@@ -1,23 +1,18 @@
 @layer fe-interview-design-system.tokens {
   :root {
-    /* Base palette */
-    --color-ink: #1b2134;
-    --color-surface: #ffffff;
+    --black: #000000;
 
-    /* Shades derived from ink (darker/raised) */
-    --color-ink-raise: #343a4e;
-    --color-ink-press: #585d71;
+    --blue-9: #1b2134;
+    --blue-7: #343a4e;
+    --blue-5: #585d71;
 
-    /* Shades derived from surface (sunk) */
-    --color-sink: #f6f6fa;
+    --gray-1: #ffffff;
+    --gray-2: #f6f6fa;
+    --gray-3: #f1f1f7;
+    --gray-4: #d3d3dc;
+    --gray-5: #c4c5cf;
 
-    /* Border scale */
-    --color-border: #d3d3dc;
-    --color-border-strong: #c4c5cf;
-
-    /* Tone accents */
-    --color-neutral-soft: #f1f1f7;
-    --color-positive-soft: #b1ffc7;
-    --color-negative-soft: #ffbfb1;
+    --green-2: #b1ffc7;
+    --red-2: #ffbfb1;
   }
 }

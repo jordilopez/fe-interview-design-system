@@ -1,0 +1,16 @@
+@use "../../styles/tools/spacing/px-to-rem.scss" as *;
+
+@layer fe-interview-design-system.tokens {
+  :root {
+    --sp-0: 0;
+    --sp-4xs: #{px-to-rem(2px)};
+    --sp-3xs: #{px-to-rem(4px)};
+    --sp-2xs: #{px-to-rem(8px)};
+    --sp-xs: #{px-to-rem(12px)};
+    --sp-s: #{px-to-rem(16px)};
+    --sp-m: #{px-to-rem(20px)};
+    --sp-l: #{px-to-rem(24px)};
+    --sp-xl: #{px-to-rem(32px)};
+    --sp-2xl: #{px-to-rem(48px)};
+  }
+}

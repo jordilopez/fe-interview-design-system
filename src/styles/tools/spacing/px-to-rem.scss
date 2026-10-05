@@ -1,0 +1,14 @@
+@use "sass:math";
+@use "./config";
+
+////
+/// @group spacing
+////
+
+/// Converts pixel units to rem
+/// @param {Number} $value In pixels units
+/// @return {Number} The converted value
+///
+@function px-to-rem($value) {
+  @return math.div($value, config.$rem-unit * 1px) * 1rem;
+}
