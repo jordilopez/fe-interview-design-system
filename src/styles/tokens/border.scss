@@ -2,6 +2,7 @@
 
 @layer fe-interview-design-system.tokens {
   :root {
+    --radius-2xs: #{px-to-rem(2px)};
     --radius-sm: #{px-to-rem(4px)};
     --radius-md: #{px-to-rem(6px)};
     --radius-lg: #{px-to-rem(8px)};

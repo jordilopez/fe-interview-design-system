@@ -1,0 +1,26 @@
+/* Motion tokens — durations (--speed-*) and timing curves (--curve-*).
+
+   Supersedes easing.scss, which still carries the legacy semantic
+   --transition-* shorthand tokens; those are deprecated and will be
+   removed in a dedicated refactor. Prefer --speed-* / --curve-* here. */
+:root {
+  // Speeds
+  --speed-fast: 200ms;
+  --speed-base: 400ms;
+  --speed-slow: 800ms;
+  --speed-slowest: 1200ms;
+
+  // Curves
+  --curve-linear-base: cubic-bezier(0.25, 0.25, 0.75, 0.75);
+
+  --curve-ease-base: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --curve-ease-in: cubic-bezier(0.42, 0, 1, 1);
+  --curve-ease-out: cubic-bezier(0, 0, 0.58, 1);
+  --curve-ease-in-out: cubic-bezier(0.68, 0.01, 0.1, 1);
+
+  --curve-quad-in: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  --curve-quad-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --curve-quad-in-out: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+  --curve-quart-out: cubic-bezier(0.165, 0.84, 0.44, 1);
+}

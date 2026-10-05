@@ -1,0 +1,156 @@
+@use "../../styles/tools" as *;
+
+.c-tab {
+  // vars
+  --tab-pill-default-background: transparent;
+  --tab-pill-default-background-hover: var(--gray-2);
+  --tab-pill-default-background-active: var(--gray-3);
+  --tab-pill-default-text: var(--color-text-primary);
+  --tab-pill-default-border: var(--gray-4);
+  --tab-pill-default-border-hover: var(--gray-5);
+  --tab-pill-default-border-active: var(--gray-3);
+  --tab-pill-default-outline: var(--black);
+
+  --tab-pill-selected-background: var(--blue-9);
+  --tab-pill-selected-background-hover: var(--blue-7);
+  --tab-pill-selected-background-active: var(--blue-5);
+  --tab-pill-selected-text: var(--gray-1);
+  --tab-pill-selected-outline: var(--blue-9);
+
+  --tab-underline-default-underline: transparent;
+  --tab-underline-default-underline-hover: var(--gray-5);
+  --tab-underline-default-underline-active: var(--gray-5);
+  --tab-underline-default-underline-focus: var(--gray-5);
+  --tab-underline-default-outline: var(--blue-9);
+
+  --tab-underline-selected-underline: var(--blue-9);
+  --tab-underline-selected-underline-hover: var(--blue-9);
+  --tab-underline-selected-underline-active: var(--blue-9);
+  --tab-underline-selected-underline-focus: var(--blue-9);
+
+  // defaults
+  --tab-background: var(--tab-pill-default-background);
+  --tab-border: var(--tab-pill-default-border);
+  --tab-text: var(--tab-pill-default-text);
+  --tab-outline: var(--tab-pill-default-outline);
+
+  cursor: pointer;
+
+  height: px-to-rem(42px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2xs);
+
+  // reset
+  border: 0;
+  padding: 0;
+
+  // assignments
+  background-color: var(--tab-background);
+  color: var(--tab-text);
+  transition:
+    background-color var(--speed-fast) var(--curve-ease-in-out),
+    color var(--speed-fast) var(--curve-ease-in-out),
+    outline-color var(--speed-fast) var(--curve-ease-in-out);
+
+  outline: px-to-rem(2px) solid transparent;
+  outline-offset: px-to-rem(2px);
+
+  &:focus {
+    outline-color: var(--tab-outline);
+  }
+
+  &[data-variant="pill"] {
+    // defaults
+    --tab-border: var(--tab-pill-default-border);
+    --tab-text: var(--tab-pill-default-text);
+
+    border: 1px solid var(--tab-border);
+    padding: 0 var(--sp-xs);
+
+    border-radius: var(--radius-full);
+
+    &:hover {
+      --tab-border: var(--tab-pill-default-border-hover);
+      --tab-background: var(--tab-pill-default-background-hover);
+    }
+
+    &:active {
+      --tab-background: var(--tab-pill-default-background-active);
+      --tab-border: var(--tab-pill-default-border-active);
+    }
+
+    &:focus {
+      --tab-outline: var(--tab-pill-default-outline);
+    }
+
+    &[data-is-selected="true"] {
+      --tab-background: var(--tab-pill-selected-background);
+      --tab-border: var(--tab-pill-selected-background);
+      --tab-text: var(--tab-pill-selected-text);
+
+      &:hover {
+        --tab-background: var(--tab-pill-selected-background-hover);
+        --tab-border: var(--tab-pill-selected-background-hover);
+      }
+
+      &:active {
+        --tab-background: var(--tab-pill-selected-background-active);
+        --tab-border: var(--tab-pill-selected-background-active);
+      }
+
+      &:focus {
+        --tab-outline: var(--tab-pill-selected-outline);
+      }
+    }
+  }
+
+  &[data-variant="underline"] {
+    --tab-underline: var(--tab-underline-default-underline);
+
+    position: relative;
+    border-radius: var(--radius-2xs);
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: px-to-rem(3px);
+      width: 100%;
+      border-radius: var(--radius-full);
+      background-color: var(--tab-underline);
+    }
+
+    &:hover {
+      --tab-underline: var(--tab-underline-default-underline-hover);
+    }
+
+    &:active {
+      --tab-underline: var(--tab-underline-default-underline-active);
+    }
+
+    &:focus {
+      --tab-underline: var(--tab-underline-default-underline-focus);
+      --tab-outline: var(--tab-underline-default-outline);
+    }
+
+    &[data-is-selected="true"] {
+      --tab-underline: var(--tab-underline-selected-underline);
+    }
+  }
+
+  @include useType(body-m);
+
+  // responsive sizing
+  @include bpFrom("md") {
+    height: px-to-rem(50px);
+
+    &[data-variant="pill"] {
+      padding: 0 var(--sp-s);
+    }
+  }
+}

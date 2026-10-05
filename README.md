@@ -47,3 +47,32 @@ The figma file of the home test is available [here](https://www.figma.com/design
 ```
 
 Migration: replace `text="..."` with `<Badge>...</Badge>`. The visual is decorative only — text inside the badge must be self-sufficient (WCAG 1.4.1).
+
+### Tab
+
+`Tab` lives at `src/components/Tab/Tab.tsx` and renders a single selectable item, intended to live inside a `role="tablist"` container. It renders a native `<button>` so it is focusable and activatable with keyboard and assistive tech out of the box.
+
+```tsx
+<div role="tablist">
+  <Tab>Overview</Tab>
+  <Tab isSelected>Notifications</Tab>
+</div>
+```
+
+Props:
+
+- `variant`: `"pill"` (default) or `"underline"` visual style.
+- `isSelected`: marks the active tab; drives `aria-selected` and `data-is-selected`.
+- `trailing`: optional trailing content rendered beside the label (e.g. a `Badge` count).
+
+```tsx
+// Underline variant
+<Tab variant="underline">Overview</Tab>
+<Tab variant="underline" isSelected>Notifications</Tab>
+```
+
+Accessibility notes:
+
+- The parent must provide `role="tablist"` and the panels `role="tabpanel"` (point at them via `aria-controls`).
+- Roving tabindex: only the selected tab stays in the tab order (`tabIndex` defaults to `isSelected ? 0 : -1`); manage arrow-key navigation on the tablist.
+- The selected state is also exposed visually via `data-is-selected`; color alone never carries meaning (WCAG 1.4.1).
