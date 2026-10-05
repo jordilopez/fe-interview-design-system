@@ -14,7 +14,7 @@ Design-system styles, split in two:
 ## Cascade layers
 
 All rules live inside `fe-interview-design-system.*` cascade layers, declared
-in this order in `index.scss`:
+in this order in `_layer-order.scss`, loaded by `index.scss`:
 
 1. `reset` — lowest precedence
 2. `tokens`

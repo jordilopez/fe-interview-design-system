@@ -1,0 +1,5 @@
+/* Declare layer precedence before any module emits rules into those layers. */
+@layer fe-interview-design-system.reset,
+  fe-interview-design-system.tokens,
+  fe-interview-design-system.base,
+  fe-interview-design-system.utils;
