@@ -74,7 +74,7 @@ describe("Tab", () => {
 
     it("does not render a badge wrapper when no badge is given", () => {
       render(<Tab>Tab</Tab>);
-      expect(screen.getByRole("tab").querySelectorAll("span")).toHaveLength(1);
+      expect(screen.getByRole("tab").querySelectorAll("span")).toHaveLength(0);
     });
   });
 

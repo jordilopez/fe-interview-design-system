@@ -56,12 +56,8 @@ export function Tab({
       className={[styles["c-tab"], className].filter(Boolean).join(" ")}
       {...rest}
     >
-      <span className={styles["c-tab__label"]}>{children}</span>
-      {badge ? (
-        <span className={styles["c-tab__slot"]}>
-          <Badge tone={badge.tone}>{badge.label}</Badge>
-        </span>
-      ) : null}
+      {children}
+      {badge ? <Badge tone={badge.tone}>{badge.label}</Badge> : null}
     </button>
   );
 }
