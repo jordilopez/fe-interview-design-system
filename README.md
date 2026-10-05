@@ -30,11 +30,9 @@ The figma file of the home test is available [here](https://www.figma.com/design
 
 ### Badge
 
-`Badge` accepts React `children` as its content. Earlier versions took a `text: string` prop — that has been replaced so consumers can compose icons, links, or any node without a second prop slot.
+`Badge` lives at `src/components/Badge/Badge.tsx` and accepts React `children` as its content. Earlier versions took a `text: string` prop — that has been replaced so consumers can compose icons, links, or any node without a second prop slot.
 
 ```tsx
-import { Badge } from "@/components/Badge/Badge";
-
 // Simple label
 <Badge>New</Badge>
 

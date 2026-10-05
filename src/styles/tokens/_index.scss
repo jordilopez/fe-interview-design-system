@@ -1,8 +1,12 @@
 /* Token custom properties — CSS output, imported once per app.
-   Each file wraps its own rules in the tokens cascade layer. */
-@import "./spacings";
-@import "./color-primitives.css";
-@import "./color-semantic.css";
-@import "./border";
-@import "./easing.css";
-@import "./typography";
+   Each file wraps its own rules in the tokens cascade layer.
+
+   Sass modules (`@use`) rather than `@import` — `@import` is deprecated
+   for removal in Dart Sass 3 (ADR-004). `@use` also inlines the token
+   rules into the compiled entry-point stylesheet; no runtime fetches. */
+@use "./spacings";
+@use "./color-primitives";
+@use "./color-semantic";
+@use "./border";
+@use "./easing";
+@use "./typography";

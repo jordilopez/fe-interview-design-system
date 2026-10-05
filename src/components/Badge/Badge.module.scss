@@ -10,6 +10,11 @@
   --badge-positive-background: var(--color-success);
   --badge-negative-background: var(--color-error);
 
+  // Text sits on top of the badge fill. Status fills stay pale in every
+  // theme, so use the on-status alias rather than --color-text-primary,
+  // which may flip in a dark theme (ADR-011).
+  --badge-text: var(--color-text-on-status);
+
   --badge-radius-mobile: var(--radius-lg);
   --badge-radius-desktop: var(--radius-xl);
 
@@ -22,7 +27,7 @@
 
   // assignments
   background-color: var(--badge-background);
-  color: var(--color-text-primary);
+  color: var(--badge-text);
   padding: var(--badge-padding);
   border-radius: var(--badge-radius);
 
