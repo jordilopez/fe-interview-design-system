@@ -1,10 +1,13 @@
 import type { HTMLAttributes } from "react";
 import styles from "./Badge.module.scss";
 
+/** Visual emphasis of the badge. */
+export type BadgeTone = "neutral" | "positive" | "negative";
+
 /** Props for the `Badge` — native span attributes plus the badge content. */
 export type BadgeProps = Omit<HTMLAttributes<HTMLElement>, "title"> & {
   /** Visual emphasis of the badge. */
-  tone?: "neutral" | "positive" | "negative";
+  tone?: BadgeTone;
 };
 
 /**

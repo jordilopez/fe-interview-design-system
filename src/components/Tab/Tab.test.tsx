@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { Badge } from "../Badge/Badge";
 import { Tab } from "./Tab";
 import styles from "./Tab.module.scss";
 
@@ -50,14 +49,30 @@ describe("Tab", () => {
     });
   });
 
-  describe("trailing", () => {
-    it("renders the trailing content beside the label when provided", () => {
-      render(<Tab trailing={<Badge>12</Badge>}>Notifications</Tab>);
+  describe("badge", () => {
+    it("renders a Badge with the given label beside the label when provided", () => {
+      render(<Tab badge={{ label: "12" }}>Notifications</Tab>);
       const tab = screen.getByRole("tab", { name: /Notifications/ });
       expect(tab).toHaveTextContent("12");
     });
 
-    it("does not render a trailing wrapper when no trailing content is given", () => {
+    it("forwards the tone to the Badge", () => {
+      render(<Tab badge={{ tone: "positive", label: "Included" }}>Plan</Tab>);
+      expect(screen.getByRole("tab").querySelector("[data-tone]")).toHaveAttribute(
+        "data-tone",
+        "positive",
+      );
+    });
+
+    it("defaults the Badge tone to neutral", () => {
+      render(<Tab badge={{ label: "12" }}>Notifications</Tab>);
+      expect(screen.getByRole("tab").querySelector("[data-tone]")).toHaveAttribute(
+        "data-tone",
+        "neutral",
+      );
+    });
+
+    it("does not render a badge wrapper when no badge is given", () => {
       render(<Tab>Tab</Tab>);
       expect(screen.getByRole("tab").querySelectorAll("span")).toHaveLength(1);
     });

@@ -1,5 +1,14 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react";
+import { Badge, type BadgeTone } from "../Badge/Badge";
 import styles from "./Tab.module.scss";
+
+/** Shape of the optional `Badge` rendered inside the tab. */
+export type TabBadge = {
+  /** Visual emphasis of the badge (defaults to Badge's `neutral`). */
+  tone?: BadgeTone;
+  /** Badge content — text, or any composed node. */
+  label: ReactNode;
+};
 
 /** Props for the `Tab` — native button attributes plus tab-specific props. */
 export type TabProps = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -7,10 +16,9 @@ export type TabProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: "pill" | "underline";
   /** Whether the tab is the active one in its tablist. Drives `aria-selected`. */
   isSelected?: boolean;
-  /** Optional trailing content rendered beside the label (e.g. a `Badge` count).
-   *  Named `trailing` rather than `slot` to avoid clashing with the native
-   *  HTML `slot` attribute (`string`) shared by all elements. */
-  trailing?: ReactNode;
+  /** Optional badge rendered beside the label to display additional
+   *  information (e.g. a count or a status like "Included"). */
+  badge?: TabBadge;
 };
 
 /**
@@ -31,7 +39,7 @@ export type TabProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 export function Tab({
   variant = "pill",
   isSelected = false,
-  trailing,
+  badge,
   className,
   children,
   tabIndex,
@@ -49,7 +57,11 @@ export function Tab({
       {...rest}
     >
       <span className={styles["c-tab__label"]}>{children}</span>
-      {trailing ? <span className={styles["c-tab__slot"]}>{trailing}</span> : null}
+      {badge ? (
+        <span className={styles["c-tab__slot"]}>
+          <Badge tone={badge.tone}>{badge.label}</Badge>
+        </span>
+      ) : null}
     </button>
   );
 }

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Badge } from "../Badge/Badge";
 import { Tab } from "./Tab";
 
 const meta = {
@@ -71,9 +70,18 @@ export const UnderlineSelected: Story = {
 export const WithBadge: Story = {
   args: {
     children: "Notifications",
-    trailing: <Badge>12</Badge>,
+    badge: { label: "12" },
   },
-  name: "With badge slot",
+  name: "With badge",
+  render: (args) => <TabList {...args} />,
+};
+
+export const WithBadgeTone: Story = {
+  args: {
+    children: "Plan",
+    badge: { tone: "positive", label: "Included" },
+  },
+  name: "With badge and tone",
   render: (args) => <TabList {...args} />,
 };
 
@@ -81,8 +89,8 @@ export const WithBadgeUnderline: Story = {
   args: {
     children: "Notifications",
     variant: "underline",
-    trailing: <Badge>12</Badge>,
+    badge: { label: "12" },
   },
-  name: "With badge slot and underline variant",
+  name: "With badge and underline variant",
   render: (args) => <TabList {...args} />,
 };

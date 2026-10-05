@@ -63,12 +63,21 @@ Props:
 
 - `variant`: `"pill"` (default) or `"underline"` visual style.
 - `isSelected`: marks the active tab; drives `aria-selected` and `data-is-selected`.
-- `trailing`: optional trailing content rendered beside the label (e.g. a `Badge` count).
+- `badge`: optional badge rendered beside the label to display additional
+  information (e.g. a count or a status like "Included"). Takes `{ tone?, label }`
+  — `tone` is `"neutral"` (default), `"positive"` or `"negative"`; `label` is the
+  badge content.
 
 ```tsx
 // Underline variant
 <Tab variant="underline">Overview</Tab>
 <Tab variant="underline" isSelected>Notifications</Tab>
+
+// With a count badge
+<Tab badge={{ label: "12" }}>Notifications</Tab>
+
+// With a status badge
+<Tab badge={{ tone: "positive", label: "Included" }}>Plan</Tab>
 ```
 
 Accessibility notes:
