@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { Tabs } from "./Tabs";
 
 const tabs = [
@@ -31,6 +31,62 @@ describe("Tabs", () => {
     for (const tab of screen.getAllByRole("tab")) {
       expect(tab).toHaveAttribute("data-variant", variant);
     }
+  });
+
+  describe("overflow", () => {
+    afterEach(() => {
+      vi.restoreAllMocks();
+      delete (HTMLElement.prototype as { scrollIntoView?: unknown }).scrollIntoView;
+    });
+
+    /** jsdom has no layout, so scrollIntoView is stubbed; we assert calls. */
+    const stubScrollIntoView = () => {
+      HTMLElement.prototype.scrollIntoView = vi.fn();
+      return vi.spyOn(HTMLElement.prototype, "scrollIntoView");
+    };
+
+    it("exposes data-overflow on the tablist, defaulting to wrap", () => {
+      render(<Tabs tabs={tabs} />);
+      expect(screen.getByRole("tablist")).toHaveAttribute("data-overflow", "wrap");
+    });
+
+    it("exposes data-overflow=scroll when configured", () => {
+      render(<Tabs tabs={tabs} overflow="scroll" />);
+      expect(screen.getByRole("tablist")).toHaveAttribute("data-overflow", "scroll");
+    });
+
+    it("scrolls the clicked tab into view only in scroll mode", async () => {
+      const user = userEvent.setup();
+      const scrollIntoView = stubScrollIntoView();
+
+      const { unmount } = render(<Tabs tabs={tabs} overflow="scroll" />);
+      await user.click(screen.getByRole("tab", { name: /Second/ }));
+      expect(scrollIntoView).toHaveBeenCalledTimes(1);
+      unmount();
+
+      scrollIntoView.mockClear();
+      render(<Tabs tabs={tabs} />);
+      await user.click(screen.getByRole("tab", { name: /Second/ }));
+      expect(scrollIntoView).not.toHaveBeenCalled();
+    });
+
+    it("scrolls the keyboard-selected tab into view only in scroll mode", () => {
+      const scrollIntoView = stubScrollIntoView();
+
+      const { unmount } = render(<Tabs tabs={tabs} overflow="scroll" defaultSelectedId="third" />);
+      fireEvent.keyDown(screen.getByRole("tab", { name: "Third" }), {
+        key: "Home",
+      });
+      expect(scrollIntoView).toHaveBeenCalledTimes(1);
+      unmount();
+
+      scrollIntoView.mockClear();
+      render(<Tabs tabs={tabs} defaultSelectedId="third" />);
+      fireEvent.keyDown(screen.getByRole("tab", { name: "Third" }), {
+        key: "Home",
+      });
+      expect(scrollIntoView).not.toHaveBeenCalled();
+    });
   });
 
   describe("selection", () => {

@@ -16,6 +16,10 @@ export type TabsItem = {
 export type TabsProps = {
   /** Visual style applied to every tab. */
   variant?: "pill" | "underline";
+  /** Overflow behaviour of the tablist. `"scroll"` lets a long tab row
+   *  scroll horizontally inside the tablist and keeps the selected tab in
+   *  view on selection; `"wrap"` (default) preserves the previous layout. */
+  overflow?: "wrap" | "scroll";
   /** Tabs to render in the tablist. */
   tabs: TabsItem[];
   /** Id of the tab selected on mount. Defaults to the first tab. */
@@ -37,9 +41,25 @@ export type TabsProps = {
  * - Panels are not rendered here and the current API does not wire
  *   `aria-controls`; consumers provide `role="tabpanel"` elements and manage
  *   the tab-to-panel association themselves.
+ * - With `overflow="scroll"`, the tablist becomes a horizontal scroll
+ *   container (tabs keep their natural width and refuse to shrink) and the
+ *   selected tab is scrolled into view on click and on keyboard selection,
+ *   so focus never lands offscreen. Default (`"wrap"`) is unchanged.
  */
-export function Tabs({ variant = "pill", tabs, defaultSelectedId, onChange }: TabsProps) {
+export function Tabs({
+  variant = "pill",
+  overflow = "wrap",
+  tabs,
+  defaultSelectedId,
+  onChange,
+}: TabsProps) {
   const [selectedId, setSelectedId] = useState(defaultSelectedId ?? tabs[0]?.id);
+
+  /** In scroll mode, keep the newly selected tab visible in the tablist. */
+  const scrollTabIntoView = (element: HTMLButtonElement | undefined) => {
+    if (overflow !== "scroll") return;
+    element?.scrollIntoView({ block: "nearest", inline: "nearest" });
+  };
 
   const select = (index: number) => {
     const item = tabs[index];
@@ -57,26 +77,38 @@ export function Tabs({ variant = "pill", tabs, defaultSelectedId, onChange }: Ta
 
     const last = tabs.length - 1;
     switch (event.key) {
-      case "ArrowRight":
+      case "ArrowRight": {
         event.preventDefault();
         select((index + 1) % tabs.length);
-        tabElements[(index + 1) % tabs.length]?.focus();
+        const next = tabElements[(index + 1) % tabs.length];
+        next?.focus();
+        scrollTabIntoView(next);
         break;
-      case "ArrowLeft":
+      }
+      case "ArrowLeft": {
         event.preventDefault();
         select((index - 1 + tabs.length) % tabs.length);
-        tabElements[(index - 1 + tabs.length) % tabs.length]?.focus();
+        const previous = tabElements[(index - 1 + tabs.length) % tabs.length];
+        previous?.focus();
+        scrollTabIntoView(previous);
         break;
-      case "Home":
+      }
+      case "Home": {
         event.preventDefault();
         select(0);
-        tabElements[0]?.focus();
+        const first = tabElements[0];
+        first?.focus();
+        scrollTabIntoView(first);
         break;
-      case "End":
+      }
+      case "End": {
         event.preventDefault();
         select(last);
-        tabElements[last]?.focus();
+        const lastTab = tabElements[last];
+        lastTab?.focus();
+        scrollTabIntoView(lastTab);
         break;
+      }
     }
   };
 
@@ -86,6 +118,7 @@ export function Tabs({ variant = "pill", tabs, defaultSelectedId, onChange }: Ta
       role="tablist"
       onKeyDown={handleKeyDown}
       data-variant={variant}
+      data-overflow={overflow}
     >
       {tabs.map(({ id, label, badge }, index) => (
         <Tab
@@ -93,7 +126,10 @@ export function Tabs({ variant = "pill", tabs, defaultSelectedId, onChange }: Ta
           variant={variant}
           isSelected={id === selectedId}
           badge={badge}
-          onClick={() => select(index)}
+          onClick={(event) => {
+            select(index);
+            scrollTabIntoView(event.currentTarget);
+          }}
         >
           {label}
         </Tab>
