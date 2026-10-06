@@ -58,7 +58,7 @@
   outline: px-to-rem(2px) solid transparent;
   outline-offset: px-to-rem(2px);
 
-  &:focus {
+  &:focus-visible {
     outline-color: var(--tab-outline);
   }
 

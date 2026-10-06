@@ -33,6 +33,9 @@ export type TabProps = ButtonHTMLAttributes<HTMLButtonElement> & {
  * - Roving tabindex: keep only the selected tab in the tab order (`tabIndex`
  *   defaults to `isSelected ? 0 : -1`) and manage arrow-key navigation on the
  *   tablist.
+ * - The focus ring is applied via `:focus-visible`, so it appears for
+ *   keyboard-driven focus (including arrow-key roving) and not after pointer
+ *   clicks.
  * - The selected state is also exposed visually via `data-is-selected`; the
  *   variant styles must never be the sole carrier of meaning (WCAG 1.4.1).
  */
