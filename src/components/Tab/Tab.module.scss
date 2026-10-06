@@ -36,6 +36,14 @@
 
   cursor: pointer;
 
+  /* Keep the label (and its badge) on a single line: tabs shouldn't wrap
+     their text, especially inside a horizontally scrollable tablist. */
+  white-space: nowrap;
+
+  /* Tabs must keep their natural width so the row can overflow a scrollable
+     tablist instead of every tab being squeezed. */
+  flex-shrink: 0;
+
   height: px-to-rem(42px);
 
   display: flex;

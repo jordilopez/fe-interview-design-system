@@ -24,6 +24,12 @@
   --badge-padding: var(--badge-padding-mobile);
 
   display: inline-block;
+  /* Keep the badge at its natural width when sitting alongside text inside a
+     flex parent (e.g. a Tab), so it isn't squeezed by sibling shrinking. */
+  flex-shrink: 0;
+  /* Keep the badge text on a single line; badges are compact status
+     indicators and should never wrap. */
+  white-space: nowrap;
 
   // assignments
   background-color: var(--badge-background);
