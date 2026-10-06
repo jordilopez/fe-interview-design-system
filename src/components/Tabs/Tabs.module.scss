@@ -1,0 +1,23 @@
+@use "../../styles/tools" as *;
+
+.c-tabs {
+  display: flex;
+
+  &[data-variant="underline"] {
+    gap: var(--sp-l);
+  }
+
+  &[data-variant="pill"] {
+    gap: var(--sp-2xs);
+  }
+
+  @include bpFrom(md) {
+    &[data-variant="underline"] {
+      gap: var(--sp-xl);
+    }
+
+    &[data-variant="pill"] {
+      gap: var(--sp-xs);
+    }
+  }
+}
