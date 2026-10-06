@@ -8,12 +8,13 @@ const config: StorybookConfig = {
     options: {},
   },
   /**
-   * GitHub Pages serves the site under a repo sub-path (e.g.
-   * /fe-interview-design-system/), so built asset URLs need that base.
-   * Set `STORYBOOK_BASE_HREF=/` for a build served from the domain root.
+   * Storybook static builds must reference assets relative to wherever they
+   * are served. CI sets `STORYBOOK_BASE_HREF` to the GitHub Pages repo
+   * sub-path; local builds (and domain-root deployments) fall back to `/`.
    */
   viteFinal: (config) => {
-    config.base = process.env.STORYBOOK_BASE_HREF ?? "/fe-interview-design-system/";
+    const base = (process.env.STORYBOOK_BASE_HREF ?? "").trim();
+    config.base = base || "/";
     return config;
   },
 };
