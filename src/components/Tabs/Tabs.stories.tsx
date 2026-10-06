@@ -6,6 +6,14 @@ const meta = {
   title: "Components/Tabs",
   component: Tabs,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Keyboard interaction (recommended WAI-ARIA tabs pattern): press `Tab` to move focus to the tablist — only the selected tab is in the tab order — then use the left/right arrow keys to move focus and selection between tabs (the keys wrap around). The tabs are native buttons, so `Space`/`Enter` also activate the focused tab. Try it with the keyboard in the canvas preview below.",
+      },
+    },
+  },
   args: {
     onChange: fn(),
   },
