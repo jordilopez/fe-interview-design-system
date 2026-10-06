@@ -5,6 +5,14 @@ const meta = {
   title: "Components/Tab",
   component: Tab,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Focus styling uses `:focus-visible`, so the focus ring only appears for keyboard focus (including arrow-key roving within a tablist) — clicking the tab with the mouse will not reveal it. Use the keyboard to inspect the focus state in the canvas preview.",
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: { type: "select" },
