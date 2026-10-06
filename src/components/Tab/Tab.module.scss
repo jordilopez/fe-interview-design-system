@@ -123,6 +123,8 @@
       width: 100%;
       border-radius: var(--radius-full);
       background-color: var(--tab-underline);
+
+      transition: background-color var(--speed-fast) var(--curve-ease-in-out);
     }
 
     &:hover {
