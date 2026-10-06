@@ -1,5 +1,6 @@
 /* Tools — compile-time only (mixins/functions). Emits no CSS.
-   Tokens (CSS output) live in styles/index.css and are imported once. */
+   Tokens (CSS output) live in styles/index.scss and are imported once. */
 
 @forward "./breakpoints";
 @forward "./typography";
+@forward "./spacing";

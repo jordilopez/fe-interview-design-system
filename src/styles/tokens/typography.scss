@@ -1,11 +1,13 @@
+@use "../../styles/tools/spacing/px-to-rem.scss" as *;
+
 @layer fe-interview-design-system.tokens {
   :root {
     /* Font families */
     --ff-inter: "Inter", sans-serif;
 
     /* Font sizes */
-    --fs-xs: 12px;
-    --fs-sm: 14px;
+    --fs-xs: #{px-to-rem(12px)};
+    --fs-sm: #{px-to-rem(14px)};
 
     /* Line heights */
     --lh-base: 1.5;

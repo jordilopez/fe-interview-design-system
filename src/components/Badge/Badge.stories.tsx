@@ -19,21 +19,21 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    text: "Badge",
+    children: "Badge",
     tone: "neutral",
   },
 };
 
 export const Positive: Story = {
   args: {
-    text: "Badge",
+    children: "Badge",
     tone: "positive",
   },
 };
 
 export const Negative: Story = {
   args: {
-    text: "Badge",
+    children: "Badge",
     tone: "negative",
   },
 };

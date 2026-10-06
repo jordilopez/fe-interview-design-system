@@ -1,8 +1,0 @@
-/* Token custom properties — CSS output, imported once per app.
-   Each file wraps its own rules in the tokens cascade layer. */
-@import "./spacings.css";
-@import "./color-primitives.css";
-@import "./color-semantic.css";
-@import "./border.css";
-@import "./easing.css";
-@import "./typography.css";

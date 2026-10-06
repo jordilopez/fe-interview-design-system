@@ -4,5 +4,8 @@
     font-weight: 700;
     font-style: normal;
     font-family: var(--ff-inter);
+
+    color: var(--color-text-primary);
+    background-color: var(--color-background);
   }
 }

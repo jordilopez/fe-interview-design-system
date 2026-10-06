@@ -1,11 +1,13 @@
 import type { HTMLAttributes } from "react";
 import styles from "./Badge.module.scss";
 
-/** Props for the `Badge` — native span attributes plus the badge text. */
-export type BadgeProps = Omit<HTMLAttributes<HTMLElement>, "title" | "children"> & {
-  text: string;
+/** Visual emphasis of the badge. */
+export type BadgeTone = "neutral" | "positive" | "negative";
+
+/** Props for the `Badge` — native span attributes plus the badge content. */
+export type BadgeProps = Omit<HTMLAttributes<HTMLElement>, "title"> & {
   /** Visual emphasis of the badge. */
-  tone?: "neutral" | "positive" | "negative";
+  tone?: BadgeTone;
 };
 
 /**
@@ -20,14 +22,14 @@ export type BadgeProps = Omit<HTMLAttributes<HTMLElement>, "title" | "children">
  * `tone="negative"` (WCAG 1.4.1). Avoid `aria-label` here: on a plain span
  * (ARIA `generic` role) it is ignored by assistive tech.
  */
-export function Badge({ text, tone = "neutral", className, ...rest }: BadgeProps) {
+export function Badge({ tone = "neutral", className, children, ...rest }: BadgeProps) {
   return (
     <span
       data-tone={tone}
       className={[styles["c-badge"], className].filter(Boolean).join(" ")}
       {...rest}
     >
-      {text}
+      {children}
     </span>
   );
 }

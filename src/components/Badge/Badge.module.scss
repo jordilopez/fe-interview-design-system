@@ -2,28 +2,51 @@
 
 .c-badge {
   @include useType(body-s);
-  --badge-border-radius: var(--radius-lg);
-  --badge-padding: var(--sp-4xs) var(--sp-3xs);
-  --badge-background-color: var(--tone-neutral);
+  // vars
+  --badge-padding-mobile: var(--sp-4xs) var(--sp-3xs);
+  --badge-padding-desktop: var(--sp-3xs) var(--sp-2xs);
+
+  --badge-default-background: var(--gray-3);
+  --badge-positive-background: var(--color-success);
+  --badge-negative-background: var(--color-error);
+
+  // Text sits on top of the badge fill. Status fills stay pale in every
+  // theme, so use the on-status alias rather than --color-text-primary,
+  // which may flip in a dark theme (ADR-011).
+  --badge-text: var(--color-text-on-status);
+
+  --badge-radius-mobile: var(--radius-lg);
+  --badge-radius-desktop: var(--radius-xl);
+
+  // defaults
+  --badge-background: var(--badge-default-background);
+  --badge-radius: var(--badge-radius-mobile);
+  --badge-padding: var(--badge-padding-mobile);
 
   display: inline-block;
+  /* Keep the badge at its natural width when sitting alongside text inside a
+     flex parent (e.g. a Tab), so it isn't squeezed by sibling shrinking. */
+  flex-shrink: 0;
+  /* Keep the badge text on a single line; badges are compact status
+     indicators and should never wrap. */
+  white-space: nowrap;
 
-  background-color: var(--badge-background-color);
-  color: var(--fg-default);
-
+  // assignments
+  background-color: var(--badge-background);
+  color: var(--badge-text);
   padding: var(--badge-padding);
-  border-radius: var(--badge-border-radius);
+  border-radius: var(--badge-radius);
 
   @include bpFrom(md) {
-    --badge-padding: var(--sp-3xs) var(--sp-2xs);
-    --badge-border-radius: var(--radius-xl);
+    --badge-padding: var(--badge-padding-desktop);
+    --badge-radius: var(--badge-radius-desktop);
   }
 
   &[data-tone="positive"] {
-    --badge-background-color: var(--tone-positive);
+    --badge-background: var(--badge-positive-background);
   }
 
   &[data-tone="negative"] {
-    --badge-background-color: var(--tone-negative);
+    --badge-background: var(--badge-negative-background);
   }
 }

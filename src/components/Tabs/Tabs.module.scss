@@ -1,0 +1,42 @@
+@use "../../styles/tools" as *;
+
+.c-tabs {
+  display: flex;
+
+  &[data-overflow="scroll"] {
+    /* The tablist itself is the horizontal scroll container; tabs refuse to
+       shrink so a long row overflows instead of being squeezed. */
+    overflow-x: auto;
+    scrollbar-width: thin;
+    /* A scroll container clips at its padding box (CSS spec), so a tab focus
+       outline drawn outside an edge-aligned tab would be cropped on any
+       side. Reserve padding on all four sides so the outline (outline-offset
+       2px) always falls inside the padding area. scroll-padding-inline makes
+       scrollIntoView align to the same horizontal buffer. */
+    padding-inline: var(--sp-s);
+    padding-block: var(--sp-2xs);
+    /* Cancel the inline padding's visual offset so the first/last tabs stay
+       aligned with the container edges when nothing is scrolled; the padding
+       remains only as the focus-outline buffer. */
+    margin-inline: calc(var(--sp-2xs) * -2);
+    scroll-padding-inline: var(--sp-m);
+  }
+
+  &[data-variant="underline"] {
+    gap: var(--sp-l);
+  }
+
+  &[data-variant="pill"] {
+    gap: var(--sp-2xs);
+  }
+
+  @include bpFrom(md) {
+    &[data-variant="underline"] {
+      gap: var(--sp-xl);
+    }
+
+    &[data-variant="pill"] {
+      gap: var(--sp-xs);
+    }
+  }
+}

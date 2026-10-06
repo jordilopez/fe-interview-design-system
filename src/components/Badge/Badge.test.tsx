@@ -5,35 +5,35 @@ import styles from "./Badge.module.scss";
 
 describe("Badge", () => {
   it("renders with the local badge class", () => {
-    render(<Badge text="Badge" />);
+    render(<Badge>Badge</Badge>);
     const badge = screen.getByText("Badge");
     expect(badge).toBeInTheDocument();
     expect(badge).toHaveClass(styles["c-badge"]);
   });
 
   it("forwards native span attributes", () => {
-    render(<Badge text="Badge" data-testid="badge" />);
+    render(<Badge data-testid="badge">Badge</Badge>);
     expect(screen.getByTestId("badge")).toBeInTheDocument();
   });
 
   it("appends custom classes after the module class", () => {
-    render(<Badge text="Badge" className="custom" />);
+    render(<Badge className="custom">Badge</Badge>);
     expect(screen.getByText("Badge")).toHaveClass(styles["c-badge"], "custom");
   });
 
   describe("tone", () => {
     it("defaults to neutral when not set", () => {
-      render(<Badge text="Badge" />);
+      render(<Badge>Badge</Badge>);
       expect(screen.getByText("Badge")).toHaveAttribute("data-tone", "neutral");
     });
 
     it("sets data-tone to positive", () => {
-      render(<Badge text="Badge" tone="positive" />);
+      render(<Badge tone="positive">Badge</Badge>);
       expect(screen.getByText("Badge")).toHaveAttribute("data-tone", "positive");
     });
 
     it("sets data-tone to negative", () => {
-      render(<Badge text="Badge" tone="negative" />);
+      render(<Badge tone="negative">Badge</Badge>);
       expect(screen.getByText("Badge")).toHaveAttribute("data-tone", "negative");
     });
   });
