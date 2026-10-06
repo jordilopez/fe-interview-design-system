@@ -40,8 +40,9 @@
      their text, especially inside a horizontally scrollable tablist. */
   white-space: nowrap;
 
-  /* Tabs must keep their natural width so the row can overflow a scrollable
-     tablist instead of every tab being squeezed. */
+  /* Tabs always keep their natural width: required so a scrollable tablist
+     can overflow instead of squeezing every tab; also prevents squeezing
+     inside any tight wrap layout. */
   flex-shrink: 0;
 
   height: px-to-rem(42px);

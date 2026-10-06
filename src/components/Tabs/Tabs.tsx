@@ -76,39 +76,30 @@ export function Tabs({
     if (index === -1) return;
 
     const last = tabs.length - 1;
+
+    /** Move selection+focus+scroll to `target` in both pointer-click and
+     *  keyboard handlers; gated for accessibility by `scrollTabIntoView`. */
+    const focusAndScroll = (target: number) => {
+      event.preventDefault();
+      select(target);
+      const tab = tabElements[target];
+      tab?.focus();
+      scrollTabIntoView(tab);
+    };
+
     switch (event.key) {
-      case "ArrowRight": {
-        event.preventDefault();
-        select((index + 1) % tabs.length);
-        const next = tabElements[(index + 1) % tabs.length];
-        next?.focus();
-        scrollTabIntoView(next);
+      case "ArrowRight":
+        focusAndScroll((index + 1) % tabs.length);
         break;
-      }
-      case "ArrowLeft": {
-        event.preventDefault();
-        select((index - 1 + tabs.length) % tabs.length);
-        const previous = tabElements[(index - 1 + tabs.length) % tabs.length];
-        previous?.focus();
-        scrollTabIntoView(previous);
+      case "ArrowLeft":
+        focusAndScroll((index - 1 + tabs.length) % tabs.length);
         break;
-      }
-      case "Home": {
-        event.preventDefault();
-        select(0);
-        const first = tabElements[0];
-        first?.focus();
-        scrollTabIntoView(first);
+      case "Home":
+        focusAndScroll(0);
         break;
-      }
-      case "End": {
-        event.preventDefault();
-        select(last);
-        const lastTab = tabElements[last];
-        lastTab?.focus();
-        scrollTabIntoView(lastTab);
+      case "End":
+        focusAndScroll(last);
         break;
-      }
     }
   };
 
