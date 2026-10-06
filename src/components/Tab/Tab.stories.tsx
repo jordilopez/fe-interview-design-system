@@ -71,6 +71,7 @@ export const WithBadge: Story = {
   args: {
     children: "Notifications",
     badge: { label: "12" },
+    tabIndex: 0,
   },
   name: "With badge",
   render: (args) => <TabList {...args} />,
@@ -80,6 +81,7 @@ export const WithBadgeTone: Story = {
   args: {
     children: "Plan",
     badge: { tone: "positive", label: "Included" },
+    tabIndex: 0,
   },
   name: "With badge and tone",
   render: (args) => <TabList {...args} />,
@@ -90,6 +92,7 @@ export const WithBadgeUnderline: Story = {
     children: "Notifications",
     variant: "underline",
     badge: { label: "12" },
+    tabIndex: 0,
   },
   name: "With badge and underline variant",
   render: (args) => <TabList {...args} />,
