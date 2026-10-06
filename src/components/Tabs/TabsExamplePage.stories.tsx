@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "A full page example: a heading and a `Tabs` bar that swaps the content of the panel below it. Each of the five tabs renders a section with a title matching the tab and several Lorem ipsum paragraphs, so you can observe scrolling behaviour with many elements on the page.\n\nKeyboard interaction: press `Tab` to focus the tablist (only the selected tab is in the tab order), then use the left/right arrow keys to move between tabs before continuing with `Tab` into the panel content.",
+          "A full page example: a heading and a `Tabs` bar that swaps the content of the panel below it. Each of the five tabs renders a section with a title matching the tab and several Lorem ipsum paragraphs, so you can observe scrolling behaviour with many elements on the page.\n\nThe `Tabs` bar uses scroll overflow, a demo behaviour showing what happens with many tabs in a small viewport: the tablist scrolls horizontally, tabs keep their natural width, and the selected tab is scrolled into view when activated.\n\nKeyboard interaction: press `Tab` to focus the tablist (only the selected tab is in the tab order), then use the left/right arrow keys to move between tabs before continuing with `Tab` into the panel content.",
       },
     },
   },

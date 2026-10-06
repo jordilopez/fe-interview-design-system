@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Keyboard interaction (recommended WAI-ARIA tabs pattern): press `Tab` to move focus to the tablist — only the selected tab is in the tab order — then use the left/right arrow keys to move focus and selection between tabs (the keys wrap around). The tabs are native buttons, so `Space`/`Enter` also activate the focused tab. Try it with the keyboard in the canvas preview below.",
+          "Keyboard interaction (recommended WAI-ARIA tabs pattern): press `Tab` to move focus to the tablist — only the selected tab is in the tab order — then use the left/right arrow keys to move focus and selection between tabs (the keys wrap around). The tabs are native buttons, so `Space`/`Enter` also activate the focused tab. Try it with the keyboard in the canvas preview below.\n\nOverflow: the `overflow` control switches between `wrap` (default) and `scroll`. `scroll` was added for demoing purposes — it shows what happens with many tabs in a small viewport: the tablist becomes a horizontal scroll container, tabs keep their natural width instead of shrinking, and the selected tab is scrolled into view on click and on keyboard selection so focus never lands offscreen.",
       },
     },
   },
