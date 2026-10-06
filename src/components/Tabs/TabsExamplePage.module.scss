@@ -1,0 +1,54 @@
+@use "../../styles/tools" as *;
+
+@use "../../styles/tools" as *;
+
+.page {
+  max-inline-size: 720px;
+  margin-inline: auto;
+  padding-block: var(--sp-2xl);
+  /* Horizontal padding so content doesn't touch the viewport edges on
+     narrow (mobile) screens; the container grows on wider ones. */
+  padding-inline: var(--sp-s);
+  /* Content must never overflow the page container. Note: the Tabs
+     tablist manages its own horizontal scroll internally (overflow="scroll"),
+     so this does not clip the tab bar. */
+  overflow: hidden;
+
+  @include bpFrom(md) {
+    padding-inline: var(--sp-l);
+  }
+}
+
+.heading {
+  margin-block-end: var(--sp-l);
+  font-size: 1.5rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-text-primary);
+}
+
+.tabs {
+  margin-block-end: var(--sp-l);
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-m);
+  padding: var(--sp-l);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.panelTitle {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-text-primary);
+}
+
+.paragraph {
+  margin: 0;
+  color: var(--color-text-secondary);
+  line-height: var(--lh-base);
+}
